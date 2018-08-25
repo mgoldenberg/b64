@@ -44,17 +44,27 @@ decode() {
 	return 1
 }
 
-make --quiet --directory=..
+if [ $# == 0 ]; then
+	ROOT=".."
+fi
 
+# build applicatoin
+make --quiet --directory=$ROOT all
+
+# run tests on encoder
 encode "h"
 encode "he"
 encode "hel"
 encode "hell"
 encode "hello"
 
+# run tests on decoder
 decode "^"
 decode "aA=="
 decode "aGU="
 decode "aGVs"
 decode "aGVsbA=="
 decode "aGVsbG8="
+
+# clean up
+make --quiet --directory=$ROOT clean
