@@ -37,7 +37,7 @@ static size_t decode_block(const uint8_t *in, uint8_t *out) {
 				read++;
 				buffer = buffer << 6 | 0;
 				for(i += 1; i < 4; i++) {
-					if(ui = decode_table[in[i]] == 64) {
+					if((ui = decode_table[in[i]]) == 64) {
 						read++;
 					}
 					buffer = buffer << 6 | 0;
